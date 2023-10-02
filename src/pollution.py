@@ -84,7 +84,3 @@ class Pollution():
             self.__con.pushData(df_data,'pollution',False,dc_toPush)
         except:
             pass
-
-    def etl_current(self):
-        #https://openweathermap.org/current
-        pass

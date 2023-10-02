@@ -16,6 +16,32 @@ CREATE TABLE pollution(
 	date varchar(50)
 );
 
+drop table weather;
+CREATE TABLE weather(
+id int,
+main varchar(20),
+description varchar(20),
+icon varchar(20),
+temp double,
+feels_like double,
+temp_min double,
+temp_max double,
+pressure double,
+humidity double,
+speed double,
+deg double,
+type double,
+id_sys double,
+country varchar(20),
+sunrise double,
+sunset double,
+base varchar(20),
+visibility varchar(20),
+date varchar(20),
+timezone varchar(20),
+name varchar(300)
+);
+
 select * from pollution;
 
-
+select * from weather;
