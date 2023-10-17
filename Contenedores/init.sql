@@ -1,3 +1,5 @@
+use db_geolocalitation;
+
 CREATE TABLE pollution(
 	co double,
 	no double,
@@ -16,7 +18,6 @@ CREATE TABLE pollution(
 	date varchar(50)
 );
 
-drop table weather;
 CREATE TABLE weather(
 id int,
 main varchar(20),
@@ -42,6 +43,3 @@ timezone varchar(20),
 name varchar(300)
 );
 
-select * from pollution;
-
-select * from weather;

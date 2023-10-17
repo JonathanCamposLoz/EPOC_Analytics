@@ -2,12 +2,11 @@ version: '3.8'
 services:
   mysql:
     image: mysql:latest
-    container_name: mysql_container
+    container_name: mysql_pollution
     environment:
-      MYSQL_ROOT_PASSWORD: jc
-      MYSQL_DATABASE: adminproyectos
+      MYSQL_ROOT_PASSWORD: Jc
+      MYSQL_DATABASE: db_geolocalitation
     ports:
       - "3306:3306"
     volumes:
-      - C:\Users\ADMIN\Documents\Jonathan\EPOC\Contenedores\Persistencia:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
