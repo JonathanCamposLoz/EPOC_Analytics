@@ -12,9 +12,6 @@ CREATE TABLE pollution(
 	lon double,
 	lat double,
 	aqi double,
-	range_h varchar(50),
-	color varchar(50),
-	Level varchar(50),
 	date varchar(50)
 );
 
@@ -43,3 +40,54 @@ timezone varchar(20),
 name varchar(300)
 );
 
+CREATE TABLE usuarios_clinica_sabana(
+	documento varchar(250),
+	Nombre varchar(500),
+	fecha_nacimiento varchar(25),
+	sexo varchar(25),
+	direccion varchar(50),
+	barrio varchar(50),
+	municipio varchar(50),
+	departamento varchar(50),
+    nombre_file varchar(100),
+	primary key (documento)
+);
+
+DROP TABLE hc_clinca_sabana;
+CREATE TABLE hc_clinca_sabana(
+    id INT AUTO_INCREMENT,
+    documento varchar(250),
+    folio varchar(250),
+	fecha_folio varchar(250),
+    motivo_consulta text,
+    triage_motivo_consulta text,
+    enfermedad_actual text,
+    antecedentes text,
+    evolucion_medico text,
+    formula_medica text,
+    ordenes_imagenes_diagnosticas text,
+    ordenes_laboratorio text,
+    resultados text,
+    terapias text,
+    notas_enfermeria text,
+    examen_fisico text,
+    direccionamiento text,
+    diagnostico text,
+	num_ingresos integer,
+	exacerbacion boolean,
+    PRIMARY KEY (id),
+    FOREIGN KEY (documento) REFERENCES usuarios_clinica_sabana(documento)
+);
+
+
+
+CREATE VIEW vw_resumen_datos AS
+SELECT 
+    documento,
+    MIN(DATE_FORMAT(STR_TO_DATE(fecha_folio, '%d/%m/%Y %H:%i:%s'), '%Y-%m-%d')) AS fecha_folio,
+    MAX(exacerbacion) AS exacerbacion
+FROM hc_clinca_sabana
+WHERE 
+    DATE_FORMAT(STR_TO_DATE(fecha_folio, '%d/%m/%Y %H:%i:%s'), '%Y-%m-%d') > '2020-01-01'
+    AND num_ingresos > 2 
+GROUP BY documento;
